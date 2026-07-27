@@ -49,7 +49,7 @@ import type {
 } from "../lib/types";
 
 export function ReportsPage() {
-  const { t, language } = useI18n();
+  const { t } = useI18n();
   const previewMode = useAuthStore((state) => state.previewMode);
   const queryClient = useQueryClient();
   const [searchParams, setSearchParams] = useSearchParams();

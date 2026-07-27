@@ -41,7 +41,6 @@ import {
 import { formatDate } from "../lib/format";
 import { useI18n } from "../lib/i18n";
 import type {
-  AssistantConversation,
   AssistantMessage,
   AssistantReference,
   AssistantResult,
