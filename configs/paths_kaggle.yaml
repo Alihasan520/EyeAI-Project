@@ -1,0 +1,5 @@
+paths:
+  hyamd_input_dir: /kaggle/input/datasets/alihasan15/hyamd-archives
+  work_dir: /kaggle/working/eyeai_binary_ensemble
+  retfound_checkpoint_path: /kaggle/input/datasets/alihasan15/retfound-checkpoint/retfound-checkpoint/RETFound_mae_natureCFP.pth
+  adam_output_dir: /kaggle/input/notebooks/alihasan15/eyeai-adam-dataset-with-retfound-model

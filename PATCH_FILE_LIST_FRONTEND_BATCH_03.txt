@@ -1,0 +1,11 @@
+Frontend/package.json
+Frontend/src/App.tsx
+Frontend/src/lib/api.ts
+Frontend/src/lib/types.ts
+Frontend/src/lib/translations.ts
+Frontend/src/styles.css
+Frontend/src/pages/AnalysisPage.tsx
+Frontend/src/components/analysis/ImageReviewModal.tsx
+Frontend/src/pages/UsersAccessPage.tsx
+Frontend/FRONTEND_BATCH_03_UPDATE_NOTES.md
+Frontend/PATCH_FILE_LIST_FRONTEND_BATCH_03.txt

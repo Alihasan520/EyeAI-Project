@@ -1,0 +1,64 @@
+api:
+  title: EyeAI AMD Screening API
+  description: Run 09 RETFound + horizontal-flip TTA inference and explainability service.
+  version: 2.0.0
+  host: 0.0.0.0
+  port: 8000
+  docs_url: /docs
+  redoc_url: /redoc
+  openapi_url: /openapi.json
+
+runtime:
+  model_package_dir: null
+  device: auto
+  preload_model: true
+  inference_lock: true
+
+upload:
+  maximum_bytes: 26214400
+  allowed_content_types:
+    - image/jpeg
+    - image/png
+    - image/webp
+    - image/tiff
+  allowed_suffixes:
+    - .jpg
+    - .jpeg
+    - .png
+    - .webp
+    - .tif
+    - .tiff
+
+cors:
+  allowed_origins:
+    - http://localhost:3000
+    - http://localhost:5173
+  allow_credentials: true
+  allowed_methods: [GET, POST]
+  allowed_headers: ["*"]
+
+quality:
+  minimum_width: 512
+  minimum_height: 512
+  minimum_fundus_fraction: 0.45
+  maximum_black_fraction: 0.55
+  maximum_overexposed_fraction: 0.08
+  maximum_glare_fraction: 0.03
+  maximum_underexposed_fraction: 0.30
+  minimum_contrast_std: 20.0
+  minimum_laplacian_variance: 20.0
+  maximum_tta_disagreement: 0.15
+
+explainability:
+  enabled: true
+  method: gradient_weighted_patch_attribution
+  target: predicted_class
+  output_dir: artifacts/explanations
+  artifacts_url_prefix: /artifacts
+  overlay_alpha: 0.45
+  black_threshold: 8
+  border_fraction: 0.10
+  minimum_fundus_focus: 0.75
+  maximum_border_focus: 0.35
+  minimum_tta_map_similarity: 0.15
+  maximum_normalized_entropy: 0.96

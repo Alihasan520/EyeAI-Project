@@ -1,0 +1,17 @@
+configs/api/product_backend_v1.yaml
+docs/product_backend_core_v1.md
+notebooks/12_product_backend_core_v1_kaggle.ipynb
+src/eyeai/api/config.py
+src/eyeai/api/main.py
+src/eyeai/api/product_router.py
+src/eyeai/product/__init__.py
+src/eyeai/product/database.py
+src/eyeai/product/models.py
+src/eyeai/product/reports.py
+src/eyeai/product/schemas.py
+src/eyeai/product/security.py
+src/eyeai/product/service.py
+tests/test_product_backend.py
+requirements.txt
+PRODUCT_BACKEND_V1_UPDATE_NOTES.md
+PATCH_FILE_LIST_PRODUCT_BACKEND_V1.txt

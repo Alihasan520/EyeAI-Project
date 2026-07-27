@@ -1,0 +1,88 @@
+augmentation:
+  brightness: 0.06
+  contrast: 0.06
+  gaussian_blur_prob: 0.0
+  horizontal_flip_prob: 0.5
+  rotation_degrees: 0
+  saturation: 0.03
+data:
+  avoid_black_roi: false
+  black_fill_mode: none
+  black_threshold: 8
+  center_crop_scale: 0.75
+  crop_mode: full
+  eval_crop_mode: full
+  external_val_manifest: manifests/armd_curated_val_positive.csv
+  fold_train_manifest: manifests/folds/fold_{fold}_train_mixed.csv
+  fold_val_manifest: manifests/folds/fold_{fold}_val_hyamd.csv
+  image_size: 224
+  max_black_fraction: 0.015
+  min_roi_scale: 0.45
+  num_workers: 2
+  prepared_dataset_dir: /kaggle/working/eyeai_prepared_binary_dataset
+  prepared_dataset_fallback_dirs:
+  - /kaggle/input/datasets/alihasan15/hymd-armd-dataset/eyeai_prepared_binary_dataset
+  require_external_validation: true
+  train_manifest: manifests/train_mixed.csv
+  val_manifest: manifests/hyamd_val.csv
+model:
+  drop_path_rate: 0.1
+  global_pool: avg
+  input_size: 224
+  min_loaded_backbone_fraction: 0.95
+  name: retfound_cfp_run09_last10_mixed
+  num_classes: 2
+  retfound_checkpoint_fallbacks:
+  - /kaggle/input/retfound-checkpoint/retfound-checkpoint/RETFound_mae_natureCFP.pth
+  - /kaggle/input/retfound-checkpoint/RETFound_mae_natureCFP.pth
+  retfound_checkpoint_path: /kaggle/input/datasets/alihasan15/retfound-checkpoint/retfound-checkpoint/RETFound_mae_natureCFP.pth
+  timm_name: vit_large_patch16_224
+  type: retfound_finetune
+  unfreeze_last_blocks: 10
+outputs:
+  checkpoint_dir: /kaggle/working/eyeai_binary_ensemble/runs/run09_retfound_last10/checkpoints
+  log_dir: /kaggle/working/eyeai_binary_ensemble/runs/run09_retfound_last10/logs
+  prediction_dir: /kaggle/working/eyeai_binary_ensemble/runs/run09_retfound_last10/predictions
+run:
+  device: cuda
+  name: run09_retfound_last10_mixed
+  seed: 42
+sampling:
+  external_positive_fraction: 0.35
+  external_sources:
+  - armd_curated
+  mode: source_aware
+  positive_fraction: 0.5
+  samples_per_epoch: null
+scheduler:
+  min_lr_ratio: 0.1
+  mode: cosine
+  warmup_epochs: 2
+selection:
+  metric: average_precision
+  min_delta: 0.003
+  mode: max
+threshold:
+  grid_step: 0.005
+  metric: macro_f1
+  min_precision: null
+  min_recall: null
+  min_specificity: null
+  mode: balanced
+training:
+  batch_size: 4
+  class_weight_mode: none
+  epochs: 20
+  freeze_frozen_batchnorm: false
+  gradient_accumulation_steps: 4
+  gradient_clip_norm: 1.0
+  head_lr: 0.0001
+  label_smoothing: 0.05
+  layer_decay: 0.75
+  lr: 2.0e-05
+  max_class_weight: 1.0
+  min_delta: 0.003
+  optimizer_include_all_params: false
+  patience: 5
+  use_amp: true
+  weight_decay: 0.05

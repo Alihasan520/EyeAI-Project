@@ -1,0 +1,80 @@
+run:
+  name: run05_hyamd_corrected_full_fundus
+  seed: 42
+  device: cuda
+
+data:
+  prepared_dataset_dir: /kaggle/working/eyeai_prepared_binary_dataset
+  prepared_dataset_fallback_dirs:
+    - /kaggle/input/eyeai-prepared-binary-dataset
+    - /kaggle/input/eyeai-prepared-binary-dataset/eyeai_prepared_binary_dataset
+  train_manifest: manifests/hyamd_train.csv
+  val_manifest: manifests/hyamd_val.csv
+  fold_train_manifest: manifests/folds/fold_{fold}_train_hyamd.csv
+  fold_val_manifest: manifests/folds/fold_{fold}_val_hyamd.csv
+  image_size: 384
+  image_col: relative_image_path
+  num_workers: 2
+  crop_mode: full
+  eval_crop_mode: full
+
+model:
+  name: efficientnetv2_s_run05_hyamd_corrected
+  type: efficientnetv2_s
+  timm_name: tf_efficientnetv2_s.in21k_ft_in1k
+  fallback_timm_name: efficientnetv2_rw_s
+  num_classes: 2
+  pretrained: true
+  require_pretrained: true
+  allow_random_fallback: false
+  dropout: 0.20
+
+training:
+  epochs: 20
+  patience: 5
+  min_delta: 0.003
+  batch_size: 8
+  lr: 0.00001
+  head_lr: 0.00005
+  weight_decay: 0.0003
+  use_amp: true
+  class_weight_mode: none
+  label_smoothing: 0.02
+  freeze_backbone_epochs: 2
+  unfreeze_strategy: last_param_percent
+  unfreeze_percent: 0.35
+  optimizer_include_all_params: false
+  freeze_frozen_batchnorm: true
+  gradient_clip_norm: 1.0
+
+sampling:
+  mode: class_balanced
+  positive_fraction: 0.50
+
+augmentation:
+  rotation_degrees: 0
+  horizontal_flip_prob: 0.5
+  brightness: 0.06
+  contrast: 0.06
+  saturation: 0.03
+  gaussian_blur_prob: 0.0
+
+scheduler:
+  mode: cosine
+  warmup_epochs: 2
+  min_lr_ratio: 0.10
+
+selection:
+  metric: average_precision
+  mode: max
+  min_delta: 0.003
+
+threshold:
+  mode: balanced
+  metric: macro_f1
+  grid_step: 0.005
+
+outputs:
+  checkpoint_dir: /kaggle/working/eyeai_binary_ensemble/runs/run05_hyamd_corrected/checkpoints
+  log_dir: /kaggle/working/eyeai_binary_ensemble/runs/run05_hyamd_corrected/logs
+  prediction_dir: /kaggle/working/eyeai_binary_ensemble/runs/run05_hyamd_corrected/predictions

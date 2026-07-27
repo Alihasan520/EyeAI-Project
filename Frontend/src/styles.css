@@ -1,0 +1,185 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap");
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  color-scheme: light;
+  --page-bg: #f5f8fc;
+  --surface: #ffffff;
+  --surface-raised: #ffffff;
+  --surface-muted: #eaf1f7;
+  --surface-hover: #e2edf5;
+  --text-primary: #0b172a;
+  --text-secondary: #58697a;
+  --text-tertiary: #7d8c9c;
+  --border: #dce6ee;
+  --primary: #0f9488;
+  --primary-soft: rgba(15, 148, 136, 0.11);
+  --ai-accent: #5b5ce2;
+  --ai-soft: rgba(91, 92, 226, 0.1);
+  --success: #168a5b;
+  --success-soft: rgba(22, 138, 91, 0.11);
+  --warning: #b96c00;
+  --warning-soft: rgba(199, 120, 0, 0.12);
+  --danger: #c83d5a;
+  --danger-soft: rgba(200, 61, 90, 0.1);
+  --shadow-card: 0 18px 45px -35px rgba(16, 40, 66, 0.35);
+  --shadow-card-hover: 0 24px 50px -32px rgba(15, 148, 136, 0.32);
+}
+
+.dark {
+  color-scheme: dark;
+  --page-bg: #07111f;
+  --surface: #0d1b2a;
+  --surface-raised: #102337;
+  --surface-muted: #13263a;
+  --surface-hover: #183047;
+  --text-primary: #eaf2f8;
+  --text-secondary: #a4b5c6;
+  --text-tertiary: #788da1;
+  --border: #21374b;
+  --primary: #2dd4bf;
+  --primary-soft: rgba(45, 212, 191, 0.11);
+  --ai-accent: #8b8cf8;
+  --ai-soft: rgba(139, 140, 248, 0.12);
+  --success: #4ade9a;
+  --success-soft: rgba(74, 222, 154, 0.11);
+  --warning: #f4b84a;
+  --warning-soft: rgba(244, 184, 74, 0.12);
+  --danger: #fb7185;
+  --danger-soft: rgba(251, 113, 133, 0.12);
+  --shadow-card: 0 24px 60px -38px rgba(0, 0, 0, 0.8);
+  --shadow-card-hover: 0 28px 65px -36px rgba(45, 212, 191, 0.23);
+}
+
+* {
+  box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--primary) 45%, transparent) transparent;
+}
+
+html {
+  min-width: 320px;
+  scroll-behavior: smooth;
+  background: var(--page-bg);
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  background:
+    radial-gradient(circle at 8% -8%, color-mix(in srgb, var(--primary-soft) 65%, transparent), transparent 28rem),
+    radial-gradient(circle at 102% 18%, color-mix(in srgb, var(--ai-soft) 68%, transparent), transparent 30rem),
+    var(--page-bg);
+  color: var(--text-primary);
+  font-family: "Manrope", "Noto Sans Arabic", "Segoe UI", Tahoma, ui-sans-serif, system-ui, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+html[lang="ar"] body,
+html[dir="rtl"] body {
+  font-family: "Noto Sans Arabic", Tahoma, "Segoe UI", "Manrope", ui-sans-serif, system-ui, sans-serif;
+}
+
+.clinical-message-text {
+  font-family: "Noto Sans Arabic", "Manrope", Tahoma, "Segoe UI", ui-sans-serif, system-ui, sans-serif;
+  unicode-bidi: plaintext;
+  text-wrap: pretty;
+}
+
+html[dir="rtl"] .clinical-message-text {
+  letter-spacing: 0;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--primary) 28%, transparent);
+  color: var(--text-primary);
+}
+
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+
+::-webkit-scrollbar-thumb {
+  border: 3px solid transparent;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--primary) 42%, transparent);
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.brand-gradient-text {
+  background: linear-gradient(135deg, var(--primary), var(--ai-accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.surface-card {
+  isolation: isolate;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.analysis-select {
+  width: 100%;
+  height: 3rem;
+  appearance: none;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  background: var(--surface-muted);
+  padding-inline: 1rem 2.75rem;
+  color: var(--text-primary);
+  font-size: 0.875rem;
+  font-weight: 600;
+  outline: none;
+  transition: border-color 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+}
+
+.analysis-select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px var(--primary-soft);
+}
+
+.analysis-select:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.analysis-select option {
+  background: var(--surface);
+  color: var(--text-primary);
+}

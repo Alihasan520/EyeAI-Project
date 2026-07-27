@@ -1,0 +1,27 @@
+paths:
+  split_dir: /kaggle/working/eyeai_binary_ensemble/HYAMD_raw/splits
+  output_dir: /kaggle/working/eyeai_binary_ensemble/ensemble
+
+models:
+  - name: retfound_lora_224
+    type: retfound_lora
+    image_size: 224
+    checkpoint: /kaggle/working/eyeai_binary_ensemble/checkpoints/retfound_lora_224_best.pth
+    weight: 0.60
+
+  - name: efficientnetv2_s_384
+    type: efficientnetv2_s
+    image_size: 384
+    checkpoint: /kaggle/working/eyeai_binary_ensemble/checkpoints/efficientnetv2_s_384_best.pth
+    weight: 0.40
+
+tta:
+  enabled: true
+  variants: [original, hflip, rotate_plus_7, rotate_minus_7]
+
+threshold:
+  grid_step: 0.005
+  metric: macro_f1
+
+aggregation:
+  group_by: [patient_id, eye]

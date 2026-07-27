@@ -1,0 +1,36 @@
+{
+  "name": "eyeai-clinical-frontend",
+  "private": true,
+  "version": "0.4.2",
+  "type": "module",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc -b --pretty false",
+    "verify:batch": "node scripts/verify-batch.mjs"
+  },
+  "dependencies": {
+    "@tanstack/react-query": ">=5.80.0 <6",
+    "framer-motion": ">=12.0.0 <13",
+    "lucide-react": ">=0.468.0 <1",
+    "react": ">=19.1.0 <20",
+    "react-dom": ">=19.1.0 <20",
+    "react-router-dom": ">=7.6.0 <8",
+    "recharts": ">=3.0.0 <4",
+    "zustand": ">=5.0.0 <6"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": ">=4.3.0 <5",
+    "@types/node": ">=22.0.0 <23",
+    "@types/react": ">=19.1.0 <20",
+    "@types/react-dom": ">=19.1.0 <20",
+    "@vitejs/plugin-react": ">=5.0.0 <6",
+    "tailwindcss": ">=4.3.0 <5",
+    "typescript": ">=5.8.0 <6",
+    "vite": ">=8.0.0 <9"
+  }
+}

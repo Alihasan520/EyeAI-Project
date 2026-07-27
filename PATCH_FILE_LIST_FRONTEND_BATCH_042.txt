@@ -1,0 +1,9 @@
+Frontend/package.json
+Frontend/scripts/verify-batch.mjs
+Frontend/src/components/analysis/ImageReviewModal.tsx
+Frontend/src/lib/runtime.ts
+Frontend/src/lib/translations.ts
+Frontend/src/pages/AssistantPage.tsx
+Frontend/src/styles.css
+FRONTEND_BATCH_042_UI_REFINEMENT_NOTES.md
+PATCH_FILE_LIST_FRONTEND_BATCH_042.txt

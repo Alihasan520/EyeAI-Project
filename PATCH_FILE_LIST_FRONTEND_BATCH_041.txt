@@ -1,0 +1,12 @@
+Frontend/package.json
+Frontend/scripts/verify-batch.mjs
+Frontend/src/App.tsx
+Frontend/src/components/analysis/ImageReviewModal.tsx
+Frontend/src/lib/api.ts
+Frontend/src/lib/runtime.ts
+Frontend/src/lib/translations.ts
+Frontend/src/pages/AlertsPage.tsx
+Frontend/src/pages/SystemPage.tsx
+FRONTEND_BATCH_041_HOTFIX_NOTES.md
+STORAGE_AND_RENDER_DEPLOYMENT.md
+PATCH_FILE_LIST_FRONTEND_BATCH_041.txt

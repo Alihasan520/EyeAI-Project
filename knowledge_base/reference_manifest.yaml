@@ -1,0 +1,114 @@
+version: "1.0"
+
+# Only pages matching the allowed topic patterns are embedded.
+# Pages whose probable heading matches an exclusion pattern are skipped
+# before FAISS indexing.
+references:
+  - source_id: NICE_NG82
+    title: Age-related macular degeneration
+    organization: National Institute for Health and Care Excellence (NICE)
+    required: true
+
+    file_name_patterns:
+      - "(?i)^NICE[-_ ]NG82[-_ ]AMD(?:[-_ ][0-9]{4})?\\.pdf$"
+      - "(?i)^agerelated[-_ ]macular[-_ ]degeneration[-_ ]pdf[-_ ]1837691334853(?:\\.pdf)?$"
+      - "(?i).*nice.*ng82.*amd.*\\.pdf$"
+      - "(?i).*age[-_ ]related.*macular.*degeneration.*nice.*\\.pdf$"
+
+    allowed_topics:
+      - classification
+      - diagnosis
+      - referral
+      - monitoring
+      - follow_up
+      - patient_information
+      - clinical_limitations
+
+    include_page_ranges: []
+
+    include_heading_patterns:
+      - "(?i)classif(?:ication|ying)"
+      - "(?i)diagnos(?:is|tic|ing)"
+      - "(?i)refer(?:ral|ring)"
+      - "(?i)monitor(?:ing)?"
+      - "(?i)follow[ -]?up"
+      - "(?i)information and support"
+      - "(?i)assessment"
+
+    exclude_heading_patterns:
+      - "(?i)^treatment"
+      - "(?i)^pharmacological"
+      - "(?i)^anti[- ]?VEGF"
+      - "(?i)^surgery|^surgical"
+      - "(?i)^cost[- ]?effectiveness"
+
+  - source_id: AAO_AMD_PPP
+    title: Age-Related Macular Degeneration Preferred Practice Pattern
+    organization: American Academy of Ophthalmology (AAO)
+    required: true
+
+    file_name_patterns:
+      - "(?i)^AAO[-_ ]AMD[-_ ]PPP(?:[-_ ][0-9]{4})?\\.pdf$"
+      - "(?i)^Age[-_ ]Related[-_ ]Macular[-_ ]Degeneration[-_ ]PPP(?:[-_ ][0-9]{4})?\\.pdf$"
+      - "(?i).*Age[-_ ]Related[-_ ]Macular[-_ ]Degeneration.*PPP.*\\.pdf$"
+      - "(?i).*AMD.*Preferred.*Practice.*Pattern.*\\.pdf$"
+      - "(?i).*Age[-_ ]Related.*Macular.*Degeneration.*Preferred.*Practice.*Pattern.*\\.pdf$"
+
+    allowed_topics:
+      - definition
+      - classification
+      - natural_history
+      - clinical_evaluation
+      - diagnostic_testing
+      - follow_up
+      - monitoring
+      - patient_education
+      - clinical_limitations
+
+    include_page_ranges: []
+
+    include_heading_patterns:
+      - "(?i)classification"
+      - "(?i)natural history"
+      - "(?i)clinical evaluation"
+      - "(?i)diagnostic test"
+      - "(?i)diagnosis"
+      - "(?i)follow[ -]?up"
+      - "(?i)monitoring"
+      - "(?i)patient education"
+      - "(?i)care process"
+
+    exclude_heading_patterns:
+      - "(?i)^treatment"
+      - "(?i)^management recommendations"
+      - "(?i)^intravitreal"
+      - "(?i)^anti[- ]?VEGF"
+      - "(?i)^dosing"
+      - "(?i)^surgery|^surgical"
+
+  # Optional third reference.
+  # The index still builds when this file is absent.
+  - source_id: BECKMAN_AMD_CLASSIFICATION
+    title: Clinical Classification of Age-related Macular Degeneration
+    organization: Beckman Initiative for Macular Research Classification Committee
+    required: false
+
+    file_name_patterns:
+      - "(?i).*beckman.*amd.*classification.*\\.pdf$"
+      - "(?i).*clinical.*classification.*age.*related.*macular.*degeneration.*\\.pdf$"
+
+    allowed_topics:
+      - classification
+      - fundus_features
+      - clinical_limitations
+
+    include_page_ranges: []
+
+    include_heading_patterns:
+      - "(?i)classification"
+      - "(?i)drusen"
+      - "(?i)pigmentary"
+      - "(?i)late AMD"
+
+    exclude_heading_patterns:
+      - "(?i)^treatment"

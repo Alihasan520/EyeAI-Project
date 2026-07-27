@@ -1,0 +1,42 @@
+run:
+  name: hyamd_binary_retfound_lora_224
+  seed: 42
+  device: cuda
+
+data:
+  input_dir: /kaggle/input/datasets/alihasan15/hyamd-archives
+  work_dir: /kaggle/working/eyeai_binary_ensemble
+  image_size: 224
+  binary_mode: true
+  positive_labels: [1, 2]
+  force_recrop: false
+  validate_existing_crops: false
+  num_workers: 2
+
+model:
+  name: retfound_lora_224
+  type: retfound_lora
+  timm_name: vit_large_patch16_224
+  num_classes: 2
+  lora_rank: 8
+  lora_alpha: 16
+  lora_dropout: 0.05
+  retfound_checkpoint_path: /kaggle/input/datasets/alihasan15/retfound-checkpoint/retfound-checkpoint/RETFound_mae_natureCFP.pth
+  adam_output_dir: /kaggle/input/notebooks/alihasan15/eyeai-adam-dataset-with-retfound-model
+  use_adam_init: true
+
+training:
+  epochs: 18
+  patience: 5
+  batch_size: 16
+  lr: 0.00002
+  weight_decay: 0.0001
+  use_amp: true
+  class_weight_mode: balanced_capped
+  max_class_weight: 2.0
+  best_metric: val_macro_f1_at_threshold
+
+outputs:
+  checkpoint_dir: /kaggle/working/eyeai_binary_ensemble/checkpoints
+  log_dir: /kaggle/working/eyeai_binary_ensemble/logs
+  prediction_dir: /kaggle/working/eyeai_binary_ensemble/predictions

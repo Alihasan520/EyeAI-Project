@@ -1,0 +1,38 @@
+run:
+  name: hyamd_binary_efficientnetv2_s_384
+  seed: 42
+  device: cuda
+
+data:
+  input_dir: /kaggle/input/datasets/alihasan15/hyamd-archives
+  work_dir: /kaggle/working/eyeai_binary_ensemble
+  image_size: 384
+  binary_mode: true
+  positive_labels: [1, 2]
+  force_recrop: false
+  validate_existing_crops: false
+  num_workers: 2
+
+model:
+  name: efficientnetv2_s_384
+  type: efficientnetv2_s
+  timm_name: tf_efficientnetv2_s.in21k_ft_in1k
+  fallback_timm_name: efficientnetv2_rw_s
+  num_classes: 2
+  pretrained: true
+
+training:
+  epochs: 18
+  patience: 5
+  batch_size: 8
+  lr: 0.00003
+  weight_decay: 0.0001
+  use_amp: true
+  class_weight_mode: balanced_capped
+  max_class_weight: 2.0
+  best_metric: val_macro_f1_at_threshold
+
+outputs:
+  checkpoint_dir: /kaggle/working/eyeai_binary_ensemble/checkpoints
+  log_dir: /kaggle/working/eyeai_binary_ensemble/logs
+  prediction_dir: /kaggle/working/eyeai_binary_ensemble/predictions

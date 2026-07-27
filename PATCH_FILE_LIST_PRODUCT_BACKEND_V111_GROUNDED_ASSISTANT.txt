@@ -1,0 +1,15 @@
+configs/api/product_backend_v11_assistant.yaml
+docs/product_backend_v11_assistant.md
+notebooks/15_product_backend_v11_assistant_kaggle.ipynb
+src/eyeai/api/config.py
+src/eyeai/api/main.py
+src/eyeai/api/service.py
+src/eyeai/assistant/context.py
+src/eyeai/assistant/factory.py
+src/eyeai/assistant/grounding.py
+src/eyeai/assistant/provider.py
+src/eyeai/assistant/service.py
+src/eyeai/product/schemas.py
+tests/test_assistant_grounding_v111.py
+PRODUCT_BACKEND_V111_GROUNDED_ASSISTANT_UPDATE_NOTES.md
+PATCH_FILE_LIST_PRODUCT_BACKEND_V111_GROUNDED_ASSISTANT.txt

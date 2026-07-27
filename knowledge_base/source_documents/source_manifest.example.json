@@ -1,0 +1,15 @@
+{
+  "collection_name": "EyeAI Approved AMD References",
+  "review_status": "draft",
+  "documents": [
+    {
+      "path": "guidelines/example-guideline.pdf",
+      "title": "Example approved guideline",
+      "publisher": "Replace with publisher",
+      "publication_date": "YYYY-MM-DD",
+      "license_or_permission": "Replace with usage permission",
+      "reviewed_by": "Replace with reviewer",
+      "reviewed_at": "YYYY-MM-DD"
+    }
+  ]
+}

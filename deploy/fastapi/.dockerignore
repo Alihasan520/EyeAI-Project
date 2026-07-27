@@ -1,0 +1,9 @@
+.git
+__pycache__
+*.pyc
+*.pth
+*.pt
+*.ckpt
+.kaggle
+notebooks
+reports

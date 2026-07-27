@@ -1,0 +1,39 @@
+paths:
+  split_dir: /kaggle/working/eyeai_binary_ensemble/HYAMD_raw/splits
+  output_dir: /kaggle/working/eyeai_binary_ensemble/ensemble_tuned
+
+models:
+  - name: retfound_lora_224
+    type: retfound_lora
+    image_size: 224
+    checkpoint: /kaggle/working/eyeai_binary_ensemble/checkpoints/retfound_lora_224_best.pth
+    prediction_file: /kaggle/working/eyeai_binary_ensemble/predictions/retfound_lora_224_val_predictions_best.csv
+    weight: 0.50
+
+  - name: efficientnetv2_s_384_regularized
+    type: efficientnetv2_s
+    image_size: 384
+    checkpoint: /kaggle/working/eyeai_binary_ensemble/checkpoints/efficientnetv2_s_384_regularized_best.pth
+    prediction_file: /kaggle/working/eyeai_binary_ensemble/predictions/efficientnetv2_s_384_regularized_val_predictions_best.csv
+    weight: 0.50
+
+tta:
+  enabled: true
+  variants: [original, hflip, rotate_plus_7, rotate_minus_7]
+
+threshold:
+  grid_step: 0.005
+  metric: macro_f1
+  mode: balanced
+  min_recall: 0.70
+  min_precision: 0.50
+  min_specificity: 0.75
+
+ensemble_tuning:
+  enabled: true
+  weight_grid_step: 0.05
+  metric: macro_f1
+  mode: balanced
+
+aggregation:
+  group_by: [patient_id, eye]

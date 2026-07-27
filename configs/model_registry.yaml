@@ -1,0 +1,39 @@
+models:
+  - name: retfound_lora_224
+    type: retfound_lora
+    image_size: 224
+    num_classes: 2
+    weight: 0.60
+    checkpoint: outputs/checkpoints/retfound_lora_224_best.pth
+    use_adam_init: true
+
+  - name: efficientnetv2_s_384
+    type: efficientnetv2_s
+    image_size: 384
+    num_classes: 2
+    weight: 0.40
+    checkpoint: outputs/checkpoints/efficientnetv2_s_384_best.pth
+    pretrained: true
+
+ensemble:
+  method: weighted_average
+  normalize_weights: true
+
+tta:
+  enabled: true
+  variants:
+    - original
+    - hflip
+    - rotate_plus_7
+    - rotate_minus_7
+
+threshold:
+  optimize_on: validation
+  metric: macro_f1
+  grid_step: 0.005
+
+aggregation:
+  enabled: true
+  group_by:
+    - patient_id
+    - eye

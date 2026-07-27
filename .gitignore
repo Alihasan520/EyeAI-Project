@@ -1,0 +1,32 @@
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.env
+.venv/
+.DS_Store
+
+# Data and model artifacts
+/data/
+/outputs/checkpoints/*.pth
+/outputs/checkpoints/*.pt
+/outputs/checkpoints/*.bin
+/outputs/checkpoints/*.safetensors
+/outputs/predictions/*.csv
+/outputs/logs/*.csv
+/outputs/thresholds/*.json
+
+# Kaggle working artifacts
+/kaggle/
+
+# Local language-model and RAG artifacts
+/eyeai_language_models/
+/eyeai_rag_index/
+/knowledge_base/index/*.faiss
+/knowledge_base/index/*.json
+/artifacts/product/
+/artifacts/reports/
+/artifacts/explanations/
+
+# Approved reference PDFs are stored in a private Kaggle Dataset, not Git.
+/knowledge_base/source_documents/**/*.pdf
+/knowledge_base/source_documents/**/*.docx

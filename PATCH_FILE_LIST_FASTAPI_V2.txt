@@ -1,0 +1,15 @@
+FASTAPI_V2_UPDATE_NOTES.md
+PATCH_FILE_LIST_FASTAPI_V2.txt
+configs/api/fastapi_v2.yaml
+docs/fastapi_v2_explainability.md
+notebooks/11_fastapi_ai_engine_v2_explainability_kaggle.ipynb
+scripts/call_explanation_api.py
+src/eyeai/api/artifacts.py
+src/eyeai/api/config.py
+src/eyeai/api/main.py
+src/eyeai/api/schemas.py
+src/eyeai/api/service.py
+src/eyeai/inference/explainability.py
+src/eyeai/inference/run09_predictor.py
+tests/test_explainability.py
+tests/test_fastapi_engine.py

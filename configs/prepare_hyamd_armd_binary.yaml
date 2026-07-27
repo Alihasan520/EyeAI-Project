@@ -1,0 +1,18 @@
+preparation:
+  seed: 42
+  hyamd_input_dir: /kaggle/input/datasets/alihasan15/hyamd-archives
+  hyamd_search_hint: hyamd-archives
+  external_input_dir: /kaggle/input/armd-curated-dataset-2023
+  external_search_hint: armd-curated-dataset-2023
+  output_dir: /kaggle/working/eyeai_prepared_binary_dataset
+  intermediate_dir: /kaggle/working/eyeai_binary_dataset_build
+  clean_output: true
+  existing_split_dir: null
+  force_recrop: false
+  validate_existing_crops: true
+  max_workers: 8
+  min_dimension: 200
+  near_duplicate_hamming_threshold: 4
+  near_duplicate_similarity_threshold: 0.985
+  n_splits: 3
+  external_validation_fraction: 0.1

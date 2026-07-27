@@ -1,0 +1,7 @@
+configs/api/product_backend_v11_assistant.yaml
+src/eyeai/api/product_router.py
+src/eyeai/product/schemas.py
+src/eyeai/product/service.py
+tests/test_frontend_batch02_api.py
+FRONTEND_BATCH_02_BACKEND_UPDATE_NOTES.md
+PATCH_FILE_LIST_FRONTEND_BATCH_02_BACKEND.txt

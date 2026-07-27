@@ -1,0 +1,87 @@
+run:
+  name: hyamd_binary_efficientnetv2_s_384_run04_smart_roi
+  seed: 42
+  device: cuda
+
+data:
+  input_dir: /kaggle/input/datasets/alihasan15/hyamd-archives
+  work_dir: /kaggle/working/eyeai_binary_ensemble
+  image_size: 384
+  binary_mode: true
+  positive_labels: [1, 2]
+  force_recrop: false
+  validate_existing_crops: false
+  num_workers: 2
+
+  # Smart ROI strategy:
+  # - training randomly samples one medically plausible ROI per image
+  # - validation averages predictions over fixed ROI views
+  crop_mode: smart_roi_random
+  eval_crop_mode: smart_multi_roi
+
+  # Do not fill black background with artificial colors.
+  # Instead, use safer ROI crops and auto-shrink any ROI that still contains
+  # too much black outside-retina area.
+  black_fill_mode: none
+  black_threshold: 8
+  avoid_black_roi: true
+  max_black_fraction: 0.015
+  min_roi_scale: 0.45
+
+  center_crop_scale: 0.65
+  roi_specs:
+    - {name: center_065, cx: 0.50, cy: 0.50, scale: 0.65}
+    - {name: center_055, cx: 0.50, cy: 0.50, scale: 0.55}
+    - {name: left_055, cx: 0.43, cy: 0.50, scale: 0.55}
+    - {name: right_055, cx: 0.57, cy: 0.50, scale: 0.55}
+    - {name: upper_055, cx: 0.50, cy: 0.43, scale: 0.55}
+    - {name: lower_055, cx: 0.50, cy: 0.57, scale: 0.55}
+
+model:
+  name: efficientnetv2_s_384_smart_roi_fixed_unfreeze
+  type: efficientnetv2_s
+  timm_name: tf_efficientnetv2_s.in21k_ft_in1k
+  fallback_timm_name: efficientnetv2_rw_s
+  num_classes: 2
+  pretrained: true
+  dropout: 0.25
+
+training:
+  epochs: 15
+  patience: 3
+  min_delta: 0.005
+  batch_size: 8
+  lr: 0.00001
+  head_lr: 0.00005
+  weight_decay: 0.0003
+  use_amp: true
+  class_weight_mode: balanced_capped
+  max_class_weight: 1.6
+  label_smoothing: 0.02
+  best_metric: val_macro_f1_at_threshold
+
+  freeze_backbone_epochs: 2
+  unfreeze_strategy: last_param_percent
+  unfreeze_percent: 0.40
+  optimizer_include_all_params: false
+
+augmentation:
+  rotation_degrees: 8
+  horizontal_flip_prob: 0.5
+  brightness: 0.06
+  contrast: 0.06
+  saturation: 0.03
+  gaussian_blur_prob: 0.02
+
+threshold:
+  mode: balanced
+  metric: macro_f1
+  grid_step: 0.005
+  min_recall: 0.70
+  min_precision: 0.50
+  min_specificity: 0.75
+
+outputs:
+  checkpoint_dir: /kaggle/working/eyeai_binary_ensemble/checkpoints
+  log_dir: /kaggle/working/eyeai_binary_ensemble/logs
+  prediction_dir: /kaggle/working/eyeai_binary_ensemble/predictions
